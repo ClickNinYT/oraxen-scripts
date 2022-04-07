@@ -237,7 +237,7 @@ def Generator():
             f.write("  Enchantments:")
             f.close()
         PreEnchantmentsEditor()
-    print("Done! Generated config are in your current working directory\nwith the name \"generated.txt\"")
+    print("Done! Generated config are in your current working directory with the name \"generated.txt\"")
 
 if __name__ == '__main__':
     print("Oraxen Custom Items Config Generator")
