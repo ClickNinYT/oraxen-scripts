@@ -118,7 +118,7 @@ def Generator():
     raw_name = input(">> Raw name: ")
     print("Enter the Display Name of the item below, this will be used for item's ingame display name.")
     display_name = input(">> Display name: ")
-    print("Enter your Item's type (Material) below.\nYou can enter in these value AXE, SWORD, PICKAXE, SHOVEL, HOE, BOW, PAPER or CUSTOM.\nEntering CUSTOM will allow you to specify your prefered material. Leave blank will set it to PAPER!")
+    print("Enter your Item's type (Material) below.\nYou can enter in these value AXE, SWORD, PICKAXE, SHOVEL, HOE, BOW, CROSSBOW, PAPER or CUSTOM.\nEntering CUSTOM will allow you to specify your prefered material. Leave blank will set it to PAPER!")
     item_type = input(">> Item Type: ")
     if item_type == "CUSTOM":
         print("Specify your item's material below.")
@@ -127,7 +127,7 @@ def Generator():
     injectID = input(">> [Y/n] ")
     print("Enter in the number of damage your item cause. Leave this blank for more customizations.")
     damage = input(">> Damage: ")
-    if item_type != "BOW":
+    if item_type != "BOW" or item_type != "CROSSBOW":
         print("Should we generate a model for this item?\nLeave blank will generate it from a texture, entering N will allow you to use a existing model.")
         genModel = input(">> [Y/n] ")
         if genModel == "N" or genModel == "n":
@@ -140,7 +140,13 @@ def Generator():
             print("Enter the model type you want to generate.\nLeave blank to set it to \"item/generated\".\nFor weapon and tool, set it to \"item/handheld\" instead.")
             modelType = input(">> Model Type: ")
     else:
-        print("ItemGen have detected that your item type is Bow, please specify the pulling models.\nJust enter the first part of the model name (for example, you have a_1, a_2, a_3, only enter in a_.)")
+        print("Please specify your bow/crossbow model.")
+        bowModel = input(">> Bow Model: ")
+        print("Please specify the pulling models.\nJust enter the first part of the model name (for example, you have a_1, a_2, a_3, only enter in a_.)")
+        bowPullingModel = input(">> Bow Pulling Model: ")
+        bpmStage0 = bowPullingModel + "0"
+        bpmStage1 = bowPullingModel + "1"
+        bpmStage2 = bowPullingModel + "2"
     with open('generated.txt', 'a') as f:
         line1 = "{0}:\n".format(raw_name)
         line2 = "  displayname: '{0}'\n".format(display_name)
@@ -173,6 +179,8 @@ def Generator():
                 line5 = "  Pack:\n    generate_model: true\n    parent_model: \"item/generated\"\n    textures:\n      - {1}\n".format(modelType, texture)
             else:
                 line5 = "  Pack:\n    generate_model: true\n    parent_model: \"{0}\"\n    textures:\n      - {1}\n".format(modelType, texture)
+            if item_type == "BOW" or item_type == "CROSSBOW":
+                line5 - "  Pack:\n    generate_model: false\n    model: \"{0}\"\n    pulling_models:\n      - {1}\n      - {2}\n      - {3}\n".format(bowModel, bpmStage0, bpmStage1, bpmStage2)
         f.writelines([line1,line2,line3,line4,line5])
         if damage:
             line6 = "  durability: {0}".format(damage)
