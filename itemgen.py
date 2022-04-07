@@ -164,6 +164,10 @@ def Generator():
             line3 = "  material: DIAMOND_HOE\n"
         elif item_type == "PAPER":
             line3 = "  material: PAPER\n"
+        elif item_type == "BOW":
+            line3 = "  material: BOW\n"
+        elif item_type == "CROSSBOW":
+            line3 = "  material: CROSSBOW\n"
         elif item_type == "CUSTOM":
             line3 = "  material: {0}\n".format(material)
         if not injectID:
