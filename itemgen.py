@@ -237,6 +237,28 @@ def Generator():
             f.write("  Enchantments:")
             f.close()
         PreEnchantmentsEditor()
+    print("Do you want to add custom mechanics to your item? This allow your item to have special behavior.\nItemGen will guide you though it. (Leave blank to ignore)")
+    yorn10 = input(">> [Y/n] ")
+    if yorn10 == "Y" or yorn10 == "y":
+        print("Do you want to add durability to your item? Leave blank to ignore.")
+        yorn9 = input(">> [Y/n] ")
+        if yorn9 == "Y" or yorn9 == "y":
+            print("Enter the durability.")
+            durability = input(">> Durability: ")
+            with open('generated.txt', 'a') as f:
+                line9 = "    durability:\n      value: {0}\n".format(durability)
+                f.write(line9)
+                f.close()
+        print("Do you want to make your item repairable? Leave blank will ignore this.")
+        yorn8 = input(">> [Y/n] ")
+        if yorn8 == "Y" or yorn8 == "y":
+            print("Enter the repair ratio.")
+            ratio = input(">> Ratio: ")
+            print("How much durability point you want to add when repaired?")
+            durabilityPoint = input(">> Durability Point: ")
+            with open('generated.txt', 'a') as f:
+                line10 = "    repair:\n      ratio: {0}\n      fixed_amount: {1}\n".format(ratio, durabilityPoint)
+                f.write(line10)
     print("Done! Generated config are in your current working directory with the name \"generated.txt\"")
 
 if __name__ == '__main__':
