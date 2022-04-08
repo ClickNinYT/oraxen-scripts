@@ -251,6 +251,9 @@ def Generator():
     print("Do you want to add custom mechanics to your item? This allow your item to have special behavior.\nItemGen will guide you though it. (Leave blank to ignore)")
     yorn10 = input(">> [Y/n] ")
     if yorn10 == "Y" or yorn10 == "y":
+        with open('generated.txt', 'a') as f:
+            f.write("  Mechanics:\n")
+            f.close()
         print("Do you want to add durability to your item? Leave blank to ignore.")
         yorn9 = input(">> [Y/n] ")
         if yorn9 == "Y" or yorn9 == "y":
