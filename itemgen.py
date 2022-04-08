@@ -120,14 +120,25 @@ def Generator():
     display_name = input(">> Display name: ")
     print("Enter your Item's type (Material) below.\nYou can enter in these value AXE, SWORD, PICKAXE, SHOVEL, HOE, BOW, CROSSBOW, PAPER or CUSTOM.\nEntering CUSTOM will allow you to specify your prefered material. Leave blank will set it to PAPER!")
     item_type = input(">> Item Type: ")
+    if not item_type:
+        item_type = "PAPER"
     if item_type == "CUSTOM":
         print("Specify your item's material below.")
         material = input(">> Material: ")
+        if material:
+            item_type = None
+            item_type = material
+            print(item_type)
+        else:
+            item_type = None
+            item_type = "PAPER"
     print("Should we inject ID for this item? This will allow Oraxen to recognise your item.\nLeave blank will set it to true. Don't set it unless you know what you are doing.")
     injectID = input(">> [Y/n] ")
     print("Enter in the number of damage your item cause. Leave this blank for more customizations.")
     damage = input(">> Damage: ")
-    if item_type != "BOW" or item_type != "CROSSBOW":
+    bow = "BOW"
+    crossbow = "CROSSBOW"
+    if item_type != bow and item_type != crossbow:
         print("Should we generate a model for this item?\nLeave blank will generate it from a texture, entering N will allow you to use a existing model.")
         genModel = input(">> [Y/n] ")
         if genModel == "N" or genModel == "n":
@@ -150,8 +161,6 @@ def Generator():
     with open('generated.txt', 'a') as f:
         line1 = "{0}:\n".format(raw_name)
         line2 = "  displayname: '{0}'\n".format(display_name)
-        if not item_type:
-            line3 = "  material: PAPER\n"
         if item_type == "AXE":
             line3 = "  material: DIAMOND_AXE\n"
         elif item_type == "SWORD":
@@ -170,12 +179,10 @@ def Generator():
             line3 = "  material: CROSSBOW\n"
         elif item_type == "CUSTOM":
             line3 = "  material: {0}\n".format(material)
-        if not injectID:
-            line4 = "  injectID: true\n"
         if injectID == "N" or injectID == "n":
             line4 = "  injectID: false\n"
         else:
-            line4 = "  injectID: true\n"
+            line4 = ""
         if isGenModel == True:
             line5 = "  Pack:\n    generate_model: false\n    model: {0}\n".format(model)
         else:
@@ -227,11 +234,11 @@ def Generator():
         if excludeInv == "Y" or excludeInv == "y":
             line7 = "  excludeFromInventory: true\n"
         else:
-            line7 = "  excludeFromInventory: false\n"
+            line7 = ""
         if unbreakable == "Y" or unbreakable == "y":
             line8 = "  unbreakable: true\n"
         else:
-            line8 = "  unbreakable: false\n"
+            line8 = ""
         f.writelines([line7,line8])
         f.close()
     print("Do you want to add Pre Enchantments to your item?\nThese enchantments will comes with your items at the start.")
