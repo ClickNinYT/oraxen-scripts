@@ -12,6 +12,26 @@ import uuid
 
 isGenModel = False
 
+def CommandMechanicEditor():
+    print("Where the command should get executed? Valid values are CONSOLE, PLAYER and OP. Default to PLAYER.")
+    execLocation = input(">> Execution Type: ")
+    print("Enter the command you want to execute.")
+    command = input(">> Command: ")
+    with open('generated.txt', 'a') as f:
+        if not execLocation:
+            line15 = "      player:\n      - \"{0}\"\n".format(command)
+        if execLocation == "CONSOLE":
+            line15 = "      console:\n      - \"{0}\"\n".format(command)
+        elif execLocation == "PLAYER":
+            line15 = "      player:\n      - \"{0}\"\n".format(command)
+        elif execLocation == "OP":
+            line15 = "      opped_player:\n      - \"{0}\"\n".format(command)
+        else:
+            line15 = "      player:\n      - \"{0}\"\n".format(command)
+        f.write(line15)
+        f.close()
+    return
+
 def PreEnchantmentsEditor():
     print("Enter the enchantment you want to pre add. A list of it can be found at https://docs.oraxen.com/configuration/items-advanced")
     enchant = input(">> Enchantment: ")
@@ -219,7 +239,7 @@ def Generator():
             f.writelines("  AttributeModifiers:\n")
             f.close()
         AttributeModifiersEditor()
-    print("Do you want to add potion effects to your item?\nThis will allow you to set what effect to give the player when your item is used. (ONLY IF YOUR ITEM MATERIAL IS POTION!)")
+    print("Do you want to add potion effects to your item?\nThis will allow you to set what effect to give the player when your item is used.")
     yorn4 = input(">> [Y/n] ")
     if yorn4 == "Y" or yorn4 == "y":
         with open('generated.txt', 'a') as f:
@@ -273,6 +293,47 @@ def Generator():
             with open('generated.txt', 'a') as f:
                 line10 = "    repair:\n      ratio: {0}\n      fixed_amount: {1}\n".format(ratio, durabilityPoint)
                 f.write(line10)
+                f.close()
+        print("Do you want to execute command when the item is used?")
+        yorn11 = input(">> [Y/n] ")
+        if yorn11 == "Y" or yorn11 == "y":
+            print("Enter command cooldown (Delay between execution). Leave blank to ignore it.")
+            cooldown = input(">> Execution Cooldown: ")
+            print("Enter the permission needed to execute the command. Leave blank to ignore it.")
+            permission = input(">> Execution Permission: ")
+            print("Should the amount decrease when used? Leave blank will set it to false.")
+            decreaseAmount = input(">> [Y/n] ")
+            with open('generated.txt', 'a') as f:
+                line11 = "    commands:\n"
+                if cooldown:
+                    line12 = "      cooldown: {0}\n".format(cooldown)
+                else:
+                    line12 = ""
+                if permission:
+                    line13 = "      permission: {0}\n".format(permission)
+                else:
+                    line13 = ""
+                if decreaseAmount == "Y" or decreaseAmount == "y":
+                    line14 = "      one_usage: true\n"
+                else:
+                    line14 = "      one_usage: false\n"
+                f.writelines([line11,line12,line13,line14])
+                f.close()
+            CommandMechanicEditor()
+        print("Do you want to show an aura when player is holding the item? (a.k.a, cool particles effect when holding the item)")
+        yorn12 = input(">> [Y/n] ")
+        if yorn12 == "Y" or yorn12 == "y":
+            print("Enter the particle type. Available types are \"simple\", \"ring\" and \"helix\". \"simple\" will be used as default.")
+            partType = input(">> Particle Type: ")
+            print("Enter the particle that will be shown. A complete list of that can be found here https://hub.spigotmc.org/javadocs/spigot/org/bukkit/Particle.html")
+            partShow = input(">> Particle: ")
+            with open('generated.txt', 'a') as f:
+                if not partType:
+                    line16 = "    aura:\n      type: simple\n      particle: {0}\n".format(partShow)
+                else:
+                    line16 = "    aura:\n      type: {0}\n      particle: {1}\n".format(partType, partShow)
+                f.write(line16)
+                f.close()
     print("Done! Generated config are in your current working directory with the name \"generated.txt\"")
 
 if __name__ == '__main__':
