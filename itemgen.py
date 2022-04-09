@@ -53,7 +53,7 @@ def PotionEffectEditor():
     duration = input(">> Duration: ")
     print("Enter effect's amplifier below.")
     amplifier = input(">> Amplifier: ")
-    print("Allow your effect to be applied by nearly mobs? Leave blank will set it to true.")
+    print("Should your effect produce more particles in ambient? Leave blank will set it to true.")
     ambient = input(">> [Y/n] ")
     print("Show effect's particles? Leave blank will set it to true.")
     particles = input(">> [Y/n] ")
