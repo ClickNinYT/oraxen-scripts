@@ -268,7 +268,7 @@ def Generator():
             f.write("  Enchantments:")
             f.close()
         PreEnchantmentsEditor()
-    print("Do you want to add custom mechanics to your item? This allow your item to have special behavior.\nItemGen will guide you though it. (Leave blank to ignore)")
+    print("Do you want to add mechanics to your item? This allow your item to have special behavior.\nItemGen will guide you though it. (Leave blank to ignore)")
     yorn10 = input(">> [Y/n] ")
     if yorn10 == "Y" or yorn10 == "y":
         with open('generated.txt', 'a') as f:
@@ -355,7 +355,19 @@ def Generator():
                     line1 = "      lose_chance: {0}".format(loseChance)
                 f.write(line1)
                 f.close()
-        
+        print("Do you want to add advanced mechanics? These mechanics will applies to some specific type of your item.\nIt allow you to even make your item more cooler. Leave blank to ignore.")
+        yorn15 = input(">> [Y/n] ")
+        if yorn15 == "Y" or yorn15 == "y":
+            # TODO: Implement these generators
+            print("Do you want your item to throw lighting bolts when used? Leave blank to ignore.")
+            print("Do you want your item to steal enemy's hearts when hit? Leave blank to ignore.")
+            print("Do you want to create a cone of particles to attack enemies? Leave blank to ignore.")
+            print("Do you want your item to launch wither skulls when right clicking? Leave blank to ignore.")
+            print("Do you want your item to automatically recolt and replant wheat when havesting? (ONLY APPLIES TO ITEM TYPE HOE.\nLeave blank to ignore.")
+            print("Do you want to mine blocks in a certin radius when used? (ONLY APPLIES TO ITEM TYPE PICKAXE).\nLeave blank to ignore. Useful if you are going to create hammers.")
+            print("Do you want to automatically smelt Iron Ore and Gold Ore when mine? (ONLY APPLIES TO ITEM TYPE PICKAXE).\nLeave blank to ignore.")
+            print("Do you want your item to convert a certin amount of your Experience into Bottle of Experience when used?\nLeave blank to ignore.")
+            print("Do you want your item to have the ability to break bedrock? Leave blank to ignore.")
     print("Done! Generated config are in your current working directory with the name \"generated.txt\"")
 
 if __name__ == '__main__':
