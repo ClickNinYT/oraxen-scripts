@@ -358,16 +358,42 @@ def Generator():
         print("Do you want to add advanced mechanics? These mechanics will applies to some specific type of your item.\nIt allow you to even make your item more cooler. Leave blank to ignore.")
         yorn15 = input(">> [Y/n] ")
         if yorn15 == "Y" or yorn15 == "y":
-            # TODO: Implement these generators
             print("Do you want your item to throw lighting bolts when used? Leave blank to ignore.")
+            yorn16 = input(">> [Y/n] ")
+            if yorn16 == "Y" or yorn16 == "y":
+
             print("Do you want your item to steal enemy's hearts when hit? Leave blank to ignore.")
+            yorn17 = input(">> [Y/n] ")
+            if yorn17 == "Y" or yorn17 == "y":
+                
             print("Do you want to create a cone of particles to attack enemies? Leave blank to ignore.")
+            yorn18 = input(">> [Y/n] ")
+            if yorn18 == "Y" or yorn18 == "y":
+                
             print("Do you want your item to launch wither skulls when right clicking? Leave blank to ignore.")
+            yorn19 = input(">> [Y/n] ")
+            if yorn19 == "Y" or yorn19 == "y":
+                
             print("Do you want your item to automatically recolt and replant wheat when havesting? (ONLY APPLIES TO ITEM TYPE HOE.\nLeave blank to ignore.")
+            yorn20 = input(">> [Y/n] ")
+            if yorn20 == "Y" or yorn20 == "y":
+                
             print("Do you want to mine blocks in a certin radius when used? (ONLY APPLIES TO ITEM TYPE PICKAXE).\nLeave blank to ignore. Useful if you are going to create hammers.")
+            yorn21 = input(">> [Y/n] ")
+            if yorn21 == "Y" or yorn21 == "y":
+                
             print("Do you want to automatically smelt Iron Ore and Gold Ore when mine? (ONLY APPLIES TO ITEM TYPE PICKAXE).\nLeave blank to ignore.")
+            yorn22 = input(">> [Y/n] ")
+            if yorn22 == "Y" or yorn22 == "y":
+                
             print("Do you want your item to convert a certin amount of your Experience into Bottle of Experience when used?\nLeave blank to ignore.")
+            yorn23 = input(">> [Y/n] ")
+            if yorn23 == "Y" or yorn23 == "y":
+                
             print("Do you want your item to have the ability to break bedrock? Leave blank to ignore.")
+            yorn24 = input(">> [Y/n] ")
+            if yorn24 == "Y" or yorn24 == "y":
+                
     print("Done! Generated config are in your current working directory with the name \"generated.txt\"")
 
 if __name__ == '__main__':
