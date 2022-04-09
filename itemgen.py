@@ -334,6 +334,28 @@ def Generator():
                     line16 = "    aura:\n      type: {0}\n      particle: {1}\n".format(partType, partShow)
                 f.write(line16)
                 f.close()
+        print("Do you want your item to be wearable in your head? (HAT). Leave blank to ignore.")
+        yorn13 = input(">> [Y/n] ")
+        if yorn13 == "Y" or yorn13 == "y":
+            with open('generated.txt', 'a') as f:
+                f.write("    hat:\n      enabled: true\n")
+                f.close()
+        print("Do you want the player to have a chance to keep the item when they die? (Only keeping this item)")
+        yorn14 = input(">> [Y/n] ")
+        if yorn14 == "Y" or yorn14 == "y":
+            with open('generated.txt', 'a') as f:
+                f.write("    soulbound:\n")
+                f.close()
+            print("Specify the lose chance (optional).\nThis will make the player still have a chance to lose the item. Default set to 0.")
+            loseChance = input(">> Lose Chance: ")
+            with open('generated.txt', 'a') as f:
+                if not loseChance:
+                    line1 = "      lose_chance: 0\n"
+                else:
+                    line1 = "      lose_chance: {0}".format(loseChance)
+                f.write(line1)
+                f.close()
+        
     print("Done! Generated config are in your current working directory with the name \"generated.txt\"")
 
 if __name__ == '__main__':
